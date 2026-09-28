@@ -83,6 +83,13 @@ footer{border-top:1px solid #281d17;padding:27px 0;color:#625a54;font-size:10px}
   .social-dock{right:10px;left:10px;bottom:10px;justify-content:center}
   .social-dock a{width:42px;height:38px}
 }
+
+/* Keep contact links clear of the chatbot launcher on the right. */
+.social-dock{left:18px;right:auto}
+@media(max-width:560px){
+  .social-dock{left:10px;right:auto;width:calc(100% - 110px);max-width:250px;gap:5px;padding:6px}
+  .social-dock a{flex:1;min-width:0;max-width:42px}
+}
 </style>
 
 <script type="application/ld+json">
@@ -257,6 +264,23 @@ function syncSocial(){const social=document.querySelector('input[name="chatbot"]
 document.querySelectorAll('.offer-service,select[name="webtype"],select[name="voice"],select[name="videoai"],select[name="editing"],input[name="chatbot"],.social-choice').forEach(el=>el.addEventListener('change',()=>{syncSocial();buildQuote()}));syncSocial();buildQuote();
 // Self-contained 2D sunrise animation: works from local content:// files without external libraries.
 const host=document.getElementById('sunrise3d');if(host){const c=document.createElement('canvas');c.setAttribute('aria-hidden','true');host.appendChild(c);const x=c.getContext('2d');let w=0,h=0,t=0;function resizeSun(){w=c.width=innerWidth*devicePixelRatio;h=c.height=innerHeight*devicePixelRatio;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';x.setTransform(1,0,0,1,0,0)}addEventListener('resize',resizeSun);resizeSun();function sun(){t+=.008;const W=innerWidth,H=innerHeight,D=devicePixelRatio||1;x.clearRect(0,0,w,h);x.save();x.scale(D,D);const cx=W/2,hy=H*.58,phase=Math.min(1,Math.max(0,(performance.now()-400)/3300)),sy=hy+70-120*phase;const glow=x.createRadialGradient(cx,sy,4,cx,sy,180);glow.addColorStop(0,'rgba(255,245,180,.95)');glow.addColorStop(.12,'rgba(255,164,45,.8)');glow.addColorStop(.45,'rgba(255,106,0,.25)');glow.addColorStop(1,'rgba(255,80,0,0)');x.fillStyle=glow;x.beginPath();x.arc(cx,sy,180,0,Math.PI*2);x.fill();x.beginPath();x.arc(cx,sy,70,0,Math.PI*2);x.fillStyle='#ff8b21';x.shadowBlur=30;x.shadowColor='#ff7a18';x.fill();x.shadowBlur=0;x.strokeStyle='#ff8b21';x.globalAlpha=.8;x.lineWidth=2;x.beginPath();x.moveTo(0,hy);x.lineTo(W,hy);x.stroke();x.globalAlpha=.22;x.strokeStyle='#ff7a18';for(let i=0;i<16;i++){const yy=hy+35+i*22+Math.sin(t+i)*3;x.beginPath();x.moveTo(0,yy);x.lineTo(W,yy);x.stroke()}for(let i=0;i<10;i++){const xx=(i/9)*W;x.beginPath();x.moveTo(cx,hy);x.lineTo(xx,H);x.stroke()}x.restore();requestAnimationFrame(sun)}sun()}
+</script>
+<!-- Horizon AI Systems: Voiceflow production chatbot -->
+<script type="text/javascript">
+  (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '6aba6af5a908393912d10cf1' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production',
+          voice: {
+            url: "https://runtime-api.voiceflow.com"
+          }
+        });
+      }
+      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+  })(document, 'script');
 </script>
 </body>
 </html>
